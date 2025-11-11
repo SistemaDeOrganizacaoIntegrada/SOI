@@ -4,7 +4,7 @@ const partials = [
   { url: 'home_page/destaque.html', target: '#partial-destaque' },
   { url: 'home_page/solucao.html', target: '#partial-solucao' },
   { url: 'home_page/beneficios.html', target: '#partial-beneficios' },
-  // rodapé e contato/CTA podem ser adicionados como partials se quiser externalizar
+  
   {
     html: `<section class="bg-primary/90 py-16 sm:py-20">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

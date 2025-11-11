@@ -7,6 +7,7 @@
 
   <!-- Tailwind (CDN) -->
   <script src="https://cdn.tailwindcss.com"></script>
+  
 
   <!-- Tailwind config -->
   <script>
@@ -22,6 +23,7 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="home_page/CSS/styles.css">
+  <script src="home_page/JS/theme.js" defer></script>
   <meta name="description" content="SOI — Solução simples e acessível para digitalizar procedimentos internos de pequenas e médias empresas.">
   <meta name="theme-color" content="#0D9488">
 </head>
@@ -93,8 +95,7 @@
           }
         }
 
-        // Optional: simple in-page anchors focus management for keyboard users
-        // Move focus to content when fragment identifier is present
+
         if (location.hash) {
           const target = document.querySelector(location.hash);
           if (target) {
@@ -113,7 +114,7 @@
     })();
   </script>
 
-  <!-- Optional form handler -->
+
   <script src="home_page/JS/form.js" defer></script>
 
   <!-- Accessibility keyboard hint -->

@@ -1,11 +1,81 @@
-:root{
-  --shadow-1: 0 10px 15px -3px rgba(0,0,0,.10);
-  --shadow-2: 0 4px 6px -2px rgba(0,0,0,.05);
-  --card-elevate: translateY(-5px);
-  --transition-fast: 0.3s cubic-bezier(.22,.9,.36,1);
+@media (prefers-color-scheme: dark) {
+  :root:not(.light-theme) { /* se o usuário não escolheu explicitamente light */
+    /* aplica dark-theme por padrão */
+  }
 }
 
-/* Styles customizados */
+:root{
+  --shadow-1: 0 10px 15px -3px rgba(0,0,0,.10);
+  --shadow-2: 0 4px 6 -2px rgba(0,0,0,.05);
+  --card-elevate: translateY(-5px);
+  --transition-fast: 0.3s cubic-bezier(.22,.9,.36,1);
+  --color-primary: #0D9488;
+  --color-primary-contrast: #ffffff;
+  --color-secondary: #111827;
+  --color-muted: #6b7280;
+  --color-bg: #f8fafc;
+  --color-surface: #ffffff;
+  --color-text: var(--color-secondary);
+  --color-border: rgba(17,24,39,0.06);
+  --radius-lg: 1rem;
+  --radius-md: 0.5rem;
+}
+
+.dark-theme{
+  --color-primary: #34d3bf;
+  --color-primary-contrast: #052022;
+  --color-secondary: #e6eef6;
+  --color-muted: #9aa6b2;
+  --color-bg: #0b1220;
+  --color-surface: #0f1724;
+  --color-text: var(--color-secondary);
+  --color-border: rgba(255,255,255,0.06);
+  --shadow-1: 0 8px 20px rgba(0,0,0,0.45);
+  --shadow-2: 0 2px 6px rgba(0,0,0,0.35);
+}
+
+@media (prefers-reduced-motion: reduce){
+  :root{ --transition-fast: none; }
+}
+
+:where(html, body){
+  font-family: Inter, "Segoe UI", Roboto, "Helvetica Neue", Arial, system-ui, -apple-system;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.bg-white,
+.bg-gray-50,
+.bg-primary\/5,
+.bg-primary\/10 {
+  background-color: var(--color-surface) !important;
+}
+
+.bg-primary {
+  background-color: var(--color-primary) !important;
+  color: var(--color-primary-contrast) !important;
+}
+
+.text-secondary { color: var(--color-text) !important; }
+.text-gray-600,
+.text-gray-700,
+.text-gray-500,
+.text-gray-400 {
+  color: var(--color-muted) !important;
+}
+
+.border-gray-100,
+.border {
+  border-color: var(--color-border) !important;
+}
+
+.text-primary { color: var(--color-primary) !important; }
+
 .card-shadow{
   box-shadow: var(--shadow-1), var(--shadow-2);
   transition: transform var(--transition-fast), box-shadow var(--transition-fast);
@@ -13,30 +83,20 @@
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   -moz-osx-font-smoothing: grayscale;
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
 }
 
 @media (prefers-reduced-motion: reduce){
-  .card-shadow{
-    transition: none;
-  }
-  .card-shadow:hover{
-    transform: none;
-  }
+  .card-shadow{ transition: none; }
+  .card-shadow:hover{ transform: none; }
 }
 
 .card-shadow:hover,
 .card-shadow:focus-within{
   transform: var(--card-elevate);
-  /* aumenta levemente a sombra ao passar o mouse para dar mais profundidade */
   box-shadow: 0 18px 30px -10px rgba(0,0,0,.12), var(--shadow-2);
-}
-
-/* Ajustes finos de tipografia */
-:where(html, body){
-  font-family: Inter, "Segoe UI", Roboto, "Helvetica Neue", Arial, system-ui, -apple-system;
-  line-height: 1.45;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 .card-hover {
@@ -53,3 +113,49 @@
   box-shadow: 0 20px 40px rgba(13,148,136,0.12) !important;
 }
 
+.dark-theme .card-shadow {
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+}
+
+#form-message {
+  color: var(--color-muted);
+  font-size: 0.875rem;
+  text-align: center;
+  padding-top: 0.5rem;
+  min-height: 1.125rem;
+}
+
+.text-green-500 { color: #16a34a !important; }
+.text-red-500 { color: #ef4444 !important; }
+
+:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 14%, transparent);
+}
+
+.rounded-xl { border-radius: 0.75rem; }
+.rounded-2xl { border-radius: 1rem; }
+
+.surface {
+  background-color: var(--color-surface);
+}
+
+svg[class*="text-"] {
+  color: inherit;
+  fill: none;
+  stroke: currentColor;
+}
+
+.user-is-tabbing :focus {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 18%, transparent);
+}
+
+h1, h2, h3, h4, h5 {
+  color: var(--color-text);
+  margin: 0 0 0.5rem 0;
+  line-height: 1.15;
+}
+
+.dark-theme .border {
+  border-color: var(--color-border) !important;
+}
