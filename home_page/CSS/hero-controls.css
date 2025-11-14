@@ -1,9 +1,5 @@
-/* hero-controls.css
-   Controles do hero rotator (wrapper, botões, bolinhas)
-   Carregar após styles.css. Esta versão dá prioridade visual ao estado ativo.
-*/
 
-/* Container principal dos controles (alinha ao centro do hero) */
+/* ---------- Container principal (topo, centralizado) ---------- */
 .hero-controls-top {
   display: flex;
   gap: 0.75rem;
@@ -12,12 +8,12 @@
   padding: 0.25rem 0;
   margin-bottom: 0.75rem;
   width: 100%;
-  max-width: 64rem; /* compatível com max-w-3xl */
+  max-width: 64rem; /* visual parity with original */
   box-sizing: border-box;
   pointer-events: auto;
 }
 
-/* Botão circular minimal e elegante */
+/* ---------- Botões circulares (prev / next) ---------- */
 .hero-control-btn {
   --hc-size: 40px;
   width: var(--hc-size);
@@ -27,9 +23,9 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: color-mix(in srgb, var(--color-surface) 92%, transparent);
-  border: 1px solid color-mix(in srgb, var(--color-text) 6%, transparent);
-  color: var(--color-text);
+  background: rgba(255, 255, 255, 0.92); /* fallback for color-mix */
+  border: 1px solid rgba(17, 24, 39, 0.06);
+  color: inherit;
   font-weight: 700;
   line-height: 1;
   padding: 0;
@@ -38,9 +34,10 @@
   -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
   user-select: none;
+  box-sizing: border-box;
 }
 
-/* Ícone SVG/texto dentro do botão */
+/* Smaller SVG / icon sizing inside button */
 .hero-control-btn > svg,
 .hero-control-btn > i {
   width: 1.05rem;
@@ -48,82 +45,82 @@
   display: block;
 }
 
-/* Hover / focus (sutil) */
+/* Hover / focus visual feedback */
 .hero-control-btn:hover,
 .hero-control-btn:focus {
   transform: translateY(-2px);
-  background: color-mix(in srgb, var(--color-surface) 96%, var(--color-primary) 4%);
-  box-shadow: 0 8px 22px color-mix(in srgb, var(--color-primary) 8%, transparent);
+  background: rgba(13, 148, 136, 0.04); /* subtle tint */
+  box-shadow: 0 8px 22px rgba(13, 148, 136, 0.08);
   outline: none;
 }
 
-/* Focus-visible para teclado (acessível) */
+/* Focus-visible for keyboard users */
 .hero-control-btn:focus-visible {
-  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-primary) 14%, transparent);
+  box-shadow: 0 0 0 4px rgba(13, 148, 136, 0.14);
   outline: none;
 }
 
-/* Wrapper das bolinhas */
+/* Respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .hero-control-btn {
+    transition: none !important;
+  }
+}
+
+/* ---------- Dots wrapper and dots ---------- */
+/* dots puramente visuais */
 .hero-dots-static {
   display: inline-flex;
   gap: 0.5rem;
   align-items: center;
   justify-content: center;
   padding: 0 0.25rem;
+  pointer-events: none; /* torna todo o grupo não-interativo */
 }
 
-/* Bolinha neutra */
-.hero-dot {
+.hero-dots-static .hero-dot {
   --hd: 9px;
   width: var(--hd);
   height: var(--hd);
   border-radius: 9999px;
-  background: color-mix(in srgb, var(--color-text) 8%, transparent);
-  border: 1px solid color-mix(in srgb, var(--color-text) 6%, transparent);
-  padding: 0;
-  cursor: pointer;
-  transition: transform 160ms ease, background-color 160ms ease, box-shadow 160ms ease, opacity 160ms ease;
+  background: rgba(17,24,39,0.08);
+  border: 1px solid rgba(17,24,39,0.06);
   display: inline-block;
   box-sizing: border-box;
   opacity: 0.98;
+  cursor: default;        /* indica visual não-interativo */
+  pointer-events: none;   /* impede clicks individuais */
 }
 
-/* Estado ativo: bolinha branca com contorno/halo da cor primária.
-   Especificidade aumentada para evitar overrides de regras externas. */
+/* estado ativo (visual apenas) */
 .hero-dots-static .hero-dot.is-active,
 .hero-dots-static .hero-dot[aria-current="true"] {
-  background: #ffffff !important;
-  border-color: color-mix(in srgb, var(--color-primary) 18%, rgba(0,0,0,0.06)) !important;
-  box-shadow: 0 6px 18px color-mix(in srgb, var(--color-primary) 12%, transparent) !important;
-  transform: scale(1.18) !important;
-  opacity: 1 !important;
+  background: #ffffff;
+  border-color: rgba(13,148,136,0.18);
+  box-shadow: 0 6px 18px rgba(13,148,136,0.12);
+  transform: scale(1.18);
+  opacity: 1;
 }
 
-/* Garante que o preenchimento não seja cortado por background-clip do wrapper */
-.hero-dots-static .hero-dot {
-  background-clip: padding-box;
-  -webkit-background-clip: padding-box;
-}
-
-/* Focus para dots (teclado) */
+/* foco/keyboard visuals não aplicam porque não são interativas,
+   mas preserve regras de acessibilidade caso mude no futuro */
 .hero-dots-static .hero-dot:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-primary) 14%, transparent);
 }
 
-/* Compact variant: reduz gap e tamanho quando necessário */
+
+/* Compact variant */
 .hero-dots-static--compact { gap: 0.35rem; }
 .hero-dots-static--compact .hero-dot { --hd: 7px; }
 
-/* Reduced motion preference */
+/* Reduced motion for dots */
 @media (prefers-reduced-motion: reduce) {
-  .hero-control-btn,
   .hero-dot {
     transition: none !important;
   }
 }
 
-/* Responsive adjustments */
+/* ---------- Responsive adjustments ---------- */
 @media (max-width: 640px) {
   .hero-controls-top { gap: 0.5rem; margin-bottom: 0.5rem; }
   .hero-control-btn { --hc-size: 36px; }
@@ -131,17 +128,21 @@
   .hero-dots-static { padding: 0; gap: 0.4rem; }
 }
 
-/* Fallbacks para garantir visibilidade em temas escuros/claro */
-.dark-theme .hero-control-btn { background: color-mix(in srgb, var(--color-surface) 90%, transparent); }
-.dark-theme .hero-dot { background: color-mix(in srgb, var(--color-text) 10%, transparent); }
-
-
-.hero-dots-static .hero-dot.is-active,
-.hero-dots-static .hero-dot[aria-current="true"] {
-  background-color: #ffffff !important;
-  border-color: color-mix(in srgb, var(--color-primary) 18%, rgba(0,0,0,0.06)) !important;
-  box-shadow: 0 6px 18px color-mix(in srgb, var(--color-primary) 12%, transparent) !important;
-  transform: scale(1.18) !important;
-  opacity: 1 !important;
+/* ---------- Dark theme fallbacks ---------- */
+/* Keeping colors readable when .dark-theme is applied on root */
+.dark-theme .hero-control-btn {
+  background: rgba(15, 23, 42, 0.88);
+  border-color: rgba(255,255,255,0.06);
+  color: var(--color-secondary, #e6eef6);
+}
+.dark-theme .hero-dot {
+  background: rgba(230, 238, 246, 0.10);
+  border-color: rgba(255,255,255,0.06);
+}
+.dark-theme .hero-dots-static .hero-dot.is-active,
+.dark-theme .hero-dots-static .hero-dot[aria-current="true"] {
+  background: #ffffff;
+  border-color: rgba(52, 211, 191, 0.18);
+  box-shadow: 0 6px 18px rgba(52, 211, 191, 0.12);
 }
 

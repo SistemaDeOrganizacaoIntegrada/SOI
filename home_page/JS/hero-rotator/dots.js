@@ -7,35 +7,38 @@
     el.className = 'hero-dot';
     el.setAttribute('aria-hidden', 'true');
     el.setAttribute('data-dot-index', String(i));
-    // garante aparência de não-interativo; o CSS pode sobrescrever se necessário
     el.style.cursor = 'default';
     return el;
   }
 
-  
+
   function createDots(container, count) {
-    if (!container) return;
+    if (!container || typeof count !== 'number' || count <= 0) return;
     container.innerHTML = '';
     for (let i = 0; i < count; i++) {
       const d = makeDotElement(i);
       container.appendChild(d);
     }
-    // sinal visual imediato para evitar flash; caller pode atualizar em seguida
+    // prevenir flash: marcar primeira dot como ativa até que o rotator atualize o estado real
     const first = container.children[0];
-    if (first) first.classList.add('is-active');
+    if (first) {
+      first.classList.add('is-active');
+      first.setAttribute('aria-current', 'true');
+    }
   }
 
-  
   function updateDots(container, activeIndex) {
     if (!container) return;
     const children = Array.from(container.children);
-    children.forEach((d, idx) => {
-      const active = idx === activeIndex;
+    if (children.length === 0) return;
+    const idx = (typeof activeIndex === 'number') ? ((activeIndex % children.length) + children.length) % children.length : 0;
+    children.forEach((d, i) => {
+      const active = i === idx;
       d.classList.toggle('is-active', active);
-      // manter aria-hidden para que leitores ignorem estes elementos
+      d.setAttribute('aria-current', active ? 'true' : 'false');
+      d.setAttribute('data-dot-index', String(i));
+      // manter aria-hidden para que leitores de tela ignorem estes elementos
       d.setAttribute('aria-hidden', 'true');
-      // também manter data attribute atualizado (útil pra debug)
-      d.setAttribute('data-dot-index', String(idx));
     });
   }
 
