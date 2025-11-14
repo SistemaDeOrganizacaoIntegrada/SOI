@@ -159,3 +159,63 @@ h1, h2, h3, h4, h5 {
 .dark-theme .border {
   border-color: var(--color-border) !important;
 }
+
+/* Footer logo ao lado do título SOI */
+.footer-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.footer-brand img {
+  height: 40px;
+  width: 40px;
+  object-fit: contain;
+  border-radius: 6px;
+}
+
+.sistemadeorganizacaointegrada {
+  display: inline-block;
+  padding: 0.375rem 1rem;            /* py-1.5 px-4 */
+  font-size: 0.75rem;               /* text-xs */
+  font-weight: 600;                 /* font-semibold */
+  text-transform: uppercase;        /* uppercase */
+  letter-spacing: 0.05em;           /* tracking-wider */
+  color: var(--primary, #34D3BF);   /* text-primary (use sua variável ou cor) */
+  background-color: color-mix(in srgb, var(--primary, #0ea5a4) 20%, transparent); /* bg-primary/20 */
+  border-radius: 9999px;            /* rounded-full */
+}
+
+
+
+/* Ajuste para telas pequenas (reduz tamanho da logo) */
+@media (max-width: 640px) {
+  .footer-brand img { height: 34px; width: 34px; }
+  .footer-brand .text-2xl { font-size: 1.125rem; } /* opcional: torna o título um pouco menor em mobile */
+}
+
+/* Hero rotator: fade in/out */
+#hero-dynamic { position: relative; }
+.hero-state {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 480ms ease, transform 480ms ease;
+  will-change: opacity, transform;
+}
+.hero-state.is-visible {
+  position: relative;
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (max-width: 640px) {
+  #hero-title { font-size: 1.875rem /* override if needed */; }
+  #hero-sub { font-size: 1rem; }
+}
+
+

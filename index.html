@@ -5,9 +5,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>SOI | Sistema de Organização Integrada</title>
 
-  <!-- Tailwind (CDN) -->
+  <!-- Tailwind (CDN - adequado para desenvolvimento; para produção compile o Tailwind) -->
   <script src="https://cdn.tailwindcss.com"></script>
-  
 
   <!-- Tailwind config -->
   <script>
@@ -24,14 +23,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="home_page/CSS/styles.css">
   <link rel="stylesheet" href="home_page/CSS/case-panel.css">
+  <link rel="stylesheet" href="home_page/CSS/hero-controls.css">
 
-  <script src="home_page/JS/theme.js" defer></script>
-  <script src="home_page/JS/case-panel.js" defer></script>
   <meta name="description" content="SOI — Solução simples e acessível para digitalizar procedimentos internos de pequenas e médias empresas.">
   <meta name="theme-color" content="#0D9488">
 </head>
-<body class="font-sans bg-gray-50 text-secondary antialiased">
 
+<body class="font-sans bg-gray-50 text-secondary antialiased">
   <!-- Partials placeholders -->
   <div id="partial-navegacao" aria-hidden="true"></div>
 
@@ -51,17 +49,9 @@
 
   <div id="partial-rodape" aria-hidden="true"></div>
 
-  <!-- partials loader -->
   <script>
     (function () {
-      // Ajuste esta variável conforme a raiz do servidor onde a pasta 'home_page/factored' está exposta.
-      // Exemplo típico quando index.html está na mesma pasta pai da pasta home_page:
-      //   const BASE = 'home_page/factored/';
-      // Se você servir a pasta C:\Users\Usuario\Desktop\projetos_python\Ideathon\SOI\ como raiz do servidor,
-      // mantenha BASE como 'home_page/factored/'.
-      // NÃO use caminhos file:// no fetch — execute um servidor HTTP (python -m http.server, http-server, Live Server)
       const BASE = 'home_page/factored/';
-
       const MAPPING = {
         'partial-navegacao': 'navegacao.html',
         'partial-destaque' : 'destaque.html',
@@ -100,7 +90,10 @@
           }
         }
 
+        // signal that partials were loaded so dependent scripts can initialize reliably
+        document.dispatchEvent(new CustomEvent('partials:loaded'));
 
+        // If there's a hash, focus the target after partials are inserted
         if (location.hash) {
           const target = document.querySelector(location.hash);
           if (target) {
@@ -119,8 +112,12 @@
     })();
   </script>
 
-
+  <!-- Scripts -->
+  <script src="home_page/JS/theme.js" defer></script>
+  <script src="home_page/JS/case-panel.js" defer></script>
+  <script src="home_page/JS/hero-rotator.js" defer></script>
   <script src="home_page/JS/form.js" defer></script>
+  <script src="home_page/JS/tally-embed.js" defer></script>
 
   <!-- Accessibility keyboard hint -->
   <script>

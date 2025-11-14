@@ -1,0 +1,117 @@
+/* hero-controls.css
+   Estilos isolados para controles do rotator:
+   - wrapper: .hero-controls-top
+   - botões:    .hero-control-btn
+   - bolinhas:  .hero-dot
+   Importe/cole este arquivo e carregue-o após styles.css
+*/
+
+/* Container (sem fundo; integra-se ao layout) */
+.hero-controls-top {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem 0;
+  margin-bottom: 1rem;
+}
+
+/* Botão circular minimal e elegante */
+.hero-control-btn {
+  --size: 40px;
+  width: var(--size);
+  height: var(--size);
+  min-width: var(--size);
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, var(--color-surface) 88%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-text) 6%, transparent);
+  color: var(--color-text);
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  padding: 0;
+}
+
+/* Smaller icon appearance when using character arrows */
+.hero-control-btn > svg,
+.hero-control-btn > i {
+  width: 1.05rem;
+  height: 1.05rem;
+}
+
+/* Hover / focus */
+.hero-control-btn:hover,
+.hero-control-btn:focus {
+  transform: translateY(-2px);
+  background: color-mix(in srgb, var(--color-surface) 94%, var(--color-primary) 4%);
+  box-shadow: 0 8px 22px color-mix(in srgb, var(--color-primary) 8%, transparent);
+  outline: none;
+}
+
+/* Focus ring for keyboard users */
+.hero-control-btn:focus-visible {
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-primary) 14%, transparent);
+}
+
+/* Dots (neutral, small, aligned with surface) */
+.hero-dot {
+  --d: 9px;
+  width: var(--d);
+  height: var(--d);
+  border-radius: 9999px;
+  background: color-mix(in srgb, var(--color-text) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-text) 6%, transparent);
+  padding: 0;
+  cursor: pointer;
+  transition: transform 160ms ease, background-color 160ms ease, box-shadow 160ms ease;
+  display: inline-block;
+}
+
+/* Active dot uses primary color */
+.hero-dot.is-active,
+.hero-dot[aria-current="true"] {
+  background: var(--color-primary);
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--color-primary) 14%, transparent);
+  transform: scale(1.18);
+  border-color: color-mix(in srgb, var(--color-primary) 14%, transparent);
+}
+
+/* Accessible focus halo on dots */
+.hero-dot:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-primary) 14%, transparent);
+}
+
+/* Compact spacing for many dots */
+.hero-dots-static {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .hero-control-btn,
+  .hero-dot {
+    transition: none !important;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .hero-controls-top { gap: 0.5rem; margin-bottom: 0.75rem; }
+  .hero-control-btn { --size: 36px; }
+  .hero-dot { --d: 7px; }
+}
+
+/* Optional utility tweaks (use in your template if needed)
+   - hidden controls on very small screens:
+     .hero-controls-top--hide-sm { display: none; }
+*/
