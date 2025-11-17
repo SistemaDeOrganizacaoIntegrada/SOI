@@ -247,14 +247,8 @@
       }
     }
 
-    // show first slide
-    // prefer the first slide that contains an image; fallback to 0
-    let initialIndex = 0;
-    for (let i = 0; i < slides.length; i++) {
-      try {
-        if (slides[i].querySelector && slides[i].querySelector('img')) { initialIndex = i; break; }
-      } catch (e) { /* ignore possible read errors */ }
-    }
+    // usar sempre o primeiro fragment como inicial
+    const initialIndex = 0;
     current = Utils.clampIndex(initialIndex, slides.length);
 
     // force eager load for images in the initial slide to avoid browser placeholder intervention
