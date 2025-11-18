@@ -1,8 +1,6 @@
 <section id="contato" class="py-16 sm:py-24 bg-gray-50">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="lg:grid lg:grid-cols-2 lg:gap-12">
-
-      <!-- Informações de Contato -->
       <div class="mb-10 lg:mb-0">
         <h2 class="text-3xl font-extrabold text-secondary mb-6">Fale Conosco</h2>
         <p class="text-gray-600 mb-8">
@@ -10,63 +8,58 @@
         </p>
 
         <div class="space-y-6">
-
-          <!-- Email (ícone SVG genérico) -->
           <div class="flex items-center text-gray-700">
-            <svg class="h-6 w-6 mr-3 flex-shrink-0 icon-email" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" role="img">
+            <svg class="h-6 w-6 mr-3 flex-shrink-0 icon-email" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" role="img" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8.5v7A2.5 2.5 0 005.5 18h13A2.5 2.5 0 0021 15.5v-7A2.5 2.5 0 0018.5 6h-13A2.5 2.5 0 003 8.5z" />
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 8.5L12 14 3 8.5" />
             </svg>
             <span class="select-all">sistemadeorganizacaointegrada@gmail.com</span>
           </div>
 
-          <!-- Telefone / WhatsApp (ícone SVG genérico de telefone) -->
           <div class="flex items-center text-gray-700">
-            <svg class="h-6 w-6 mr-3 flex-shrink-0 icon-whatsapp" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" role="img">
+            <svg class="h-6 w-6 mr-3 flex-shrink-0 icon-whatsapp" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" role="img" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 15.5a8.38 8.38 0 01-.9 3.9 8.5 8.5 0 01-7.6 4.6 8.38 8.38 0 01-4.7-1.4L3 21l1.4-5.8A8.38 8.38 0 013.1 9.7 8.5 8.5 0 019.7 3 8.5 8.5 0 0121 11.6z" />
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16.5 11.5c-.2 0-1.1 0-1.6.7-.5.7-.6.9-1.1 1.1s-.9.3-1.6-.3c-.7-.6-1.6-1.8-2.2-1.8s-1.2.1-1.7.5" />
             </svg>
             <a href="tel:+5598981871728" class="text-gray-700 hover:text-primary">(98) 98187-1728</a>
           </div>
 
-          <!-- Instagram (ícone SVG genérico de link / redes) -->
           <div class="flex items-center text-gray-700">
-            <svg class="h-6 w-6 mr-3 flex-shrink-0 icon-instagram" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" role="img">
+            <svg class="h-6 w-6 mr-3 flex-shrink-0 icon-instagram" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" role="img" aria-hidden="true">
               <rect x="3" y="3" width="18" height="18" rx="5" ry="5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" />
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.5 6.5h.01" />
             </svg>
             <a href="https://www.instagram.com/sistema_organizacao_integrada/" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-primary underline">@sistema_organizacao_integrada</a>
           </div>
-
         </div>
       </div>
 
-      <!-- Formulário Embed -->
       <div>
         <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-xl border border-gray-100">
           <h3 class="text-xl font-bold text-secondary mb-4">Envie sua mensagem</h3>
-          <p class="text-gray-600 mb-6">Preencha o formulário rápido e seguro no espaço ao lado.</p>
+          <p class="text-gray-600 mb-6">Preencha o formulário rápido e seguro no espaço ao lado. Se o formulário não for exibido, utilize o botão de fallback para abrir em nova aba.</p>
 
-          <div class="w-full rounded-lg overflow-hidden border border-gray-100" style="box-shadow: inset 0 0 0 1px rgba(0,0,0,0.02);">
-            <div id="tally-frame-wrap" style="width:100%; height:700px; max-height:70vh; min-height:420px;">
-              <iframe
-                id="tally-iframe"
-                src="https://tally.so/r/Y5D7r0?hideTitle=1&alignCenter=1"
-                width="100%"
-                height="100%"
-                frameborder="0"
-                loading="lazy"
-                style="border:0; display:block; width:100%; height:100%;"
-                title="Formulário de Contato SOI">
-              </iframe>
-            </div>
+          <div id="tally-frame-wrap" class="w-full rounded-lg overflow-hidden border border-gray-100" style="box-shadow: inset 0 0 0 1px rgba(0,0,0,0.02); width:100%; height:700px; max-height:90vh; min-height:420px;">
+            <iframe
+              id="google-form-iframe"
+              src="https://docs.google.com/forms/d/e/1FAIpQLSdnaRycB0NVyJfn3-Q-wi2xEo7vnkf4zug1WYyPVLDL-Mt9uQ/viewform?embedded=true"
+              width="100%"
+              height="853"
+              frameborder="0"
+              marginheight="0"
+              marginwidth="0"
+              loading="lazy"
+              style="border:0; display:block; width:100%; height:100%; min-height:420px;"
+              title="Formulário de Contato SOI - Google Forms"
+              aria-label="Formulário de Contato SOI - Google Forms">
+              Carregando…
+            </iframe>
           </div>
 
           <p class="text-sm text-center pt-2" id="form-message" aria-live="polite"></p>
         </div>
       </div>
-
     </div>
   </div>
 </section>
