@@ -1,0 +1,160 @@
+/* destaque-2-layout.css
+ *
+ * Layout do destaque 2: texto à esquerda, imagem (painel amarelo) à direita.
+ * Objetivo: aumentar a largura da coluna de texto em desktop (55% texto / 45% imagem)
+ * mantendo a imagem grande e com boa presença visual.
+ */
+
+/* variáveis locais */
+:root {
+  --destaque2-max: 72rem;
+  --destaque2-right-bg: #FFD94D; /* amarelo do painel direito */
+  --destaque2-gap: 1.5rem; /* gap entre colunas */
+  --destaque2-text-padding: 1.25rem;
+  --destaque2-image-min-width: 36%; /* não deixar a coluna da imagem encolher demais */
+  --destaque2-image-min-height: 420px; /* presença visual da imagem */
+}
+
+/* wrapper objetivo */
+#hero-dynamic .hero-state .max-w-5xl {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--destaque2-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* grid base do slide alvo */
+#hero-dynamic .hero-state .max-w-5xl .grid {
+  gap: var(--destaque2-gap);
+  align-items: center;
+}
+
+/* células da grid */
+#hero-dynamic .hero-state .max-w-5xl .grid > .w-full.flex {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+/* bordas e radius para image-panel ou imgs diretos */
+#hero-dynamic .hero-state .max-w-5xl .grid > .w-full.flex > .image-panel,
+#hero-dynamic .hero-state .max-w-5xl .grid > .w-full.flex > img {
+  border-radius: 1rem;
+}
+
+/* cartão amarelo que envolve a imagem (se existir .image-panel) */
+#hero-dynamic .hero-state .max-w-5xl .grid > .w-full.flex > .image-panel {
+  background: var(--destaque2-right-bg);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  border-radius: 1rem;
+  box-sizing: border-box;
+}
+
+/* imagens dentro do painel amarelo ou imagens diretas
+   Mantém a imagem grande: altura mínima, full-bleed horizontal dentro da célula. */
+#hero-dynamic .hero-state .max-w-5xl .grid > .w-full.flex .image-panel img,
+#hero-dynamic .hero-state .max-w-5xl .grid > .w-full.flex img {
+  width: 100% !important;
+  max-width: none !important;
+  height: auto !important;
+  object-fit: cover !important;
+  display: block !important;
+  border-radius: .75rem;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+/* Se queremos presença visual extra da imagem, forçamos uma altura mínima na célula da imagem */
+#hero-dynamic .hero-state .max-w-5xl .grid > .w-full.flex:last-child {
+  min-width: var(--destaque2-image-min-width);
+  box-sizing: border-box;
+}
+
+/* caption abaixo da imagem */
+#hero-dynamic .hero-state .max-w-5xl .grid > .w-full.flex .image-caption {
+  font-size: .875rem;
+  color: rgba(0,0,0,0.85);
+  text-align: center;
+  margin-top: .5rem;
+  max-width: 100%;
+}
+
+/* ==== DESKTOP (mantém a imagem grande e aumenta a coluna de texto) ==== */
+@media (min-width: 1024px) {
+  /* aplica apenas quando o slide está visível/ativo */
+  #hero-dynamic .hero-state.is-visible .max-w-5xl .grid.grid-cols-1.lg\:grid-cols-2,
+  #hero-dynamic .hero-state.is-active .max-w-5xl .grid.grid-cols-1.lg\:grid-cols-2 {
+    /* 55% texto / 45% imagem: texto mais largo, imagem ainda com boa largura */
+    grid-template-columns: 55% 45% !important;
+    align-items: center !important;
+  }
+
+  /* Espaçamento confortável na coluna de texto */
+  #hero-dynamic .hero-state.is-visible .max-w-5xl .grid > :first-child,
+  #hero-dynamic .hero-state.is-active .max-w-5xl .grid > :first-child {
+    padding-right: var(--destaque2-text-padding);
+    box-sizing: border-box;
+  }
+
+  /* Garantir presença visual: força altura mínima prática na célula de imagem */
+  #hero-dynamic .hero-state.is-visible .max-w-5xl .grid > .w-full.flex:last-child,
+  #hero-dynamic .hero-state.is-active .max-w-5xl .grid > .w-full.flex:last-child {
+    min-height: var(--destaque2-image-min-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Se a imagem usar object-fit: cover, assegurar que ocupe toda a célula verticalmente */
+  #hero-dynamic .hero-state.is-visible .max-w-5xl .grid > .w-full.flex:last-child img,
+  #hero-dynamic .hero-state.is-active .max-w-5xl .grid > .w-full.flex:last-child img {
+    height: 100% !important;
+    width: 100% !important;
+    object-fit: cover !important;
+  }
+}
+
+/* ==== TABLET E CELULAR: volta ao fluxo vertical ==== */
+@media (max-width: 1023px) {
+  #hero-dynamic .hero-state .max-w-5xl .grid.grid-cols-1.lg\:grid-cols-2 {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* remover o painel amarelo lateral em telas menores */
+  #hero-dynamic .hero-state .max-w-5xl .grid > .w-full.flex > .image-panel {
+    background: transparent;
+    padding: 0;
+    border-radius: .75rem;
+  }
+
+  #hero-dynamic .hero-state .max-w-5xl .grid > .w-full.flex img {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 100% !important;
+  }
+
+  #hero-dynamic .hero-state .max-w-5xl .grid > :first-child {
+    padding-right: 0;
+  }
+}
+
+/* Acessibilidade: contraste e foco para o botão dentro do texto */
+#hero-dynamic .hero-state .max-w-5xl .destaque-title-2 + .dtext-xl + .inline-flex,
+#hero-dynamic .hero-state .max-w-5xl .destaque-title-2 ~ a {
+  outline-offset: 3px;
+}
+
+/* Redução de movimento */
+@media (prefers-reduced-motion: reduce) {
+  #hero-dynamic .hero-state .max-w-5xl .grid,
+  #hero-dynamic .hero-state .max-w-5xl .grid > * {
+    transition: none !important;
+  }
+}
+
