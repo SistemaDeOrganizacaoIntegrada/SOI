@@ -21,3 +21,16 @@
   border-color: rgba(52, 211, 191, 0.18);
   box-shadow: 0 6px 18px rgba(52, 211, 191, 0.12);
 }
+
+/* Regras específicas no dark-theme.css (após .dark-theme) */
+.dark-theme img.icon-email {
+  filter: invert(1) hue-rotate(200deg) brightness(1.05) contrast(1.02);
+}
+
+.dark-theme img.icon-whatsapp {
+  filter: invert(1) hue-rotate(200deg) brightness(1.05) contrast(1.02);
+}
+
+.dark-theme img.icon-instagram {
+  filter: invert(1) hue-rotate(200deg) brightness(1.05) contrast(1.02);
+}
